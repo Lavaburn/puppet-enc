@@ -12,10 +12,10 @@ require 'puppet-enc'
 
 Meta = {
     :prog     => "#{__FILE__}",
-    :author   => "Rohith",
-    :email    => "gambol99@gmail.com",
-    :date     => "2013-10-10 10:10:32 +0100",
-    :version  => "0.0.1"
+    :author   => "Lavaburn",
+    :email    => "nicolas@truyens.com",
+    :date     => "2019-03-04 13:45:00 +0100",
+    :version  => "0.0.2"
 }
 
 @options = {
@@ -43,7 +43,7 @@ Parser = OptionParser::new do |opts|
     opts.on( "-H", "--host hostname",      "the hostname you wish to classify" )                                            { |arg| @options[:hosts]        << arg   }
     opts.on( "-c", "--classify filename",  "the location of the classification file (defaults to #{@options[:classify]})" ) { |arg| @options[:classify]     = arg    }
     opts.on( "-o", "--output type",        "the output type (defaults to #{@options[:output]})")                            { |arg| @options[:output]       = arg    }
-    opts.on( "-1", "--quiut",              "do not product any output, just an exit code")                                  { @options[:quiet]              = true   }
+    opts.on( "-1", "--quiet",              "do not product any output, just an exit code")                                  { @options[:quiet]              = true   }
     opts.on( "-L", "--withlock",           "specify we need to acquire the lock file before proceeding" )                   { @options[:withlock]           = true   }
     opts.on( "-l", "--lock file",          "the location of the lock file (defaults to #{@options[:lock_file]})" )          { |arg| @options[:lock_file]    = arg    }
     opts.on( "-v", "--verbose",            "switch on verbose logging" )                                                    { @options[:verbose]            = true   }

@@ -1,29 +1,26 @@
 --- 
-stats: 
-  last_updated: "323232323"
 groups: 
-  puppet::default: 
-    puppet: 
-  all: 
-    base: 
-    puppet: 
+  group1:
+    environment: testing
+    classes:
+      myclass1: {}
+    parameters:
+      param1: value1
+  group2:
+    parent: group1
+    parameters:
+      param3: value3
   default: 
-    ntp: 
-    base: 
+    classes: {} 
+    parameters: {}
 nodes: 
-  perdb301-hsk.mydomain.com: 
-    parameters: {}
+  host1.mydomain.com: 
+    environment: development 
+    parameters:
+      param2: value2
     classes: 
-      base::default: {}
-      opennebula::vm: {}
-      mol::contentdb:
-    groups: 
-      puppet::default: {}
-  graphite301-hsk.mydomain.com: 
-    parameters: {}
-    classes: 
-      base::default: {}
-      mol::graphite: {}
-      opennebula::vm: {}
-    groups: 
-      puppet::default: {}
+      myclass2: {}
+  host2.mydomain.com: 
+    parameters:
+      param1: value1b
+    group: group2

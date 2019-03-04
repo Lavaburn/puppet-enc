@@ -2,38 +2,36 @@ Puppet External Node Classifer
 =========================
 
 Puppet-enc is a external node classifier for puppet. The classification file itself is a standard yaml file
-
-    --- 
-    stats: 
-      last_updated: "323232323"
-    groups: 
-      puppet::default: 
-        puppet: 
-      all: 
-        base: 
-        puppet: 
-      default: 
-        ntp: 
-        base: 
-    nodes: 
-      perdb301-hsk.mydomain.com: 
-        parameters: {}
-        classes: 
-          base::default: {}
-          opennebula::vm: {}
-          mol::contentdb:
-        groups: 
-          puppet::default: {}
-      graphite301-hsk.mydomain.com: 
-        parameters: {}
-        classes: 
-          base::default: {}
-          mol::graphite: {}
-          opennebula::vm: {}
-        groups: 
-          puppet::default: {}
-          
-All the nodes a enclosed in the nodes array. The classifier also supports notion of groups which are merged into the final classification; note: the merging supports bottom down priority, i.e. the attributes of the nodes override attributes from the inherited group.
+	
+	--- 
+	groups: 
+	  group1:
+	    environment: testing
+	    classes:
+	      myclass1: {}
+	    parameters:
+	      param1: value1
+	  group2:
+	    parent: group1
+	    parameters:
+	      param3: value3
+	  default: 
+	    classes: {} 
+	    parameters: {}
+	nodes: 
+	  host1.mydomain.com: 
+	    environment: development 
+	    parameters:
+	      param2: value2
+	    classes: 
+	      myclass2: {}
+	  host2.mydomain.com: 
+	    parameters:
+	      param1: value1b
+	    group: group2
+	              
+All the nodes are enclosed in the nodes array. Hosts not added will get data from the "default" group! 
+Group data will be merged recursively (Deep merge not supported!) from the parent down.
 
 
 bin/classify.rb
